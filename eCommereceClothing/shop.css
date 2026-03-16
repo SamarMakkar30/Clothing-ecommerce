@@ -1,0 +1,367 @@
+/* ============================================
+   RAHIL RAZA - Shop Page Styles
+   Clean design without quick view
+   ============================================ */
+
+/* Shop Main */
+.shop-main {
+    padding-top: calc(var(--header-height) + var(--announcement-height));
+    min-height: 100vh;
+    background: var(--white);
+}
+
+/* Shop Header */
+.shop-header {
+    padding: 60px 0 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--medium-gray);
+}
+
+.breadcrumb a {
+    color: var(--medium-gray);
+}
+
+.breadcrumb a:hover {
+    color: var(--black);
+}
+
+.breadcrumb span:last-child {
+    color: var(--black);
+}
+
+.shop-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    margin-bottom: 15px;
+}
+
+.shop-subtitle {
+    font-family: var(--font-accent);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--dark-gray);
+}
+
+/* Filter Bar */
+.filter-bar {
+    padding: 25px 0;
+    background: var(--ivory);
+    position: sticky;
+    top: calc(var(--header-height));
+    z-index: 100;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.filter-bar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.filter-tabs {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.filter-tab {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+    color: var(--medium-gray);
+    padding: 8px 0;
+    border: none;
+    background: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.filter-tab:hover,
+.filter-tab.active {
+    color: var(--black);
+    border-bottom-color: var(--black);
+}
+
+.filter-actions {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.sort-select select {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    padding: 10px 35px 10px 15px;
+    border: 1px solid var(--light-gray);
+    background: var(--white);
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23333' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+}
+
+.products-count {
+    font-size: 0.8rem;
+    color: var(--medium-gray);
+    letter-spacing: 0.05em;
+}
+
+/* Shop Products Grid */
+.shop-products {
+    padding: 60px 0 100px;
+}
+
+.shop-products .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+/* Product Card - Clean design like shoe website */
+.shop-product-card {
+    position: relative;
+    background: var(--white);
+}
+
+.shop-product-card .product-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.shop-product-card .product-image {
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: #f8f8f8;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.shop-product-card .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.shop-product-card:hover .product-image img {
+    transform: scale(1.05);
+}
+
+.shop-product-card .product-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: var(--black);
+    color: var(--white);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    padding: 8px 12px;
+    font-weight: 600;
+    border-radius: 50px;
+}
+
+.shop-product-card .product-badge.sale {
+    background: #c41e3a;
+}
+
+.shop-product-card .product-badge.limited {
+    background: var(--gold);
+}
+
+.shop-product-card .product-info {
+    padding: 0 5px;
+}
+
+.shop-product-card .product-category {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--medium-gray);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.shop-product-card .product-name {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    color: var(--black);
+}
+
+.shop-product-card .product-price {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--black);
+}
+
+.shop-product-card .product-price .original {
+    font-size: 0.85rem;
+    color: var(--medium-gray);
+    text-decoration: line-through;
+    margin-left: 8px;
+    font-weight: 400;
+}
+
+/* Empty State */
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.empty-state svg {
+    color: var(--light-gray);
+    margin-bottom: 20px;
+}
+
+.empty-state h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.empty-state p {
+    color: var(--medium-gray);
+    margin-bottom: 30px;
+}
+
+.empty-state .btn-primary {
+    display: inline-block;
+    padding: 15px 30px;
+    background: var(--black);
+    color: var(--white);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+/* WhatsApp Floating Button */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+}
+
+/* Toast */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--black);
+    color: var(--white);
+    padding: 16px 30px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 10000;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .shop-products .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .filter-bar-inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+    }
+    
+    .filter-tabs {
+        justify-content: flex-start;
+    }
+    
+    .filter-actions {
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 768px) {
+    .shop-header {
+        padding: 40px 0 30px;
+    }
+    
+    .filter-tabs {
+        gap: 20px;
+    }
+    
+    .shop-products .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .shop-product-card .product-name {
+        font-size: 0.9rem;
+    }
+    
+    .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+    }
+}
+
+@media (max-width: 480px) {
+    .shop-products .products-grid {
+        gap: 15px;
+    }
+    
+    .shop-product-card .product-image {
+        border-radius: 6px;
+    }
+    
+    .shop-product-card .product-badge {
+        font-size: 0.6rem;
+        padding: 6px 10px;
+    }
+}

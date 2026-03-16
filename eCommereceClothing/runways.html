@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Runways | RAHIL RAZA</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="Rahil.png">
+    <link rel="apple-touch-icon" href="Rahil.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="./style.css">
+    
+    <style>
+        /* Runways Page Styles */
+        .runways-page {
+            padding-top: var(--header-height, 80px);
+        }
+
+        /* Hero Section */
+        .runways-hero {
+            min-height: 45vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--black);
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .runways-hero-content {
+            max-width: 800px;
+        }
+
+        .runways-label {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+        }
+
+        .runways-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 400;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            opacity: 0;
+        }
+
+        .runways-subtitle {
+            font-family: var(--font-accent);
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.6);
+            font-style: italic;
+            opacity: 0;
+        }
+
+        /* Gallery Section */
+        .runways-gallery {
+            padding: 80px 0;
+            background: var(--ivory);
+        }
+
+        .gallery-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Clean Grid */
+        .runway-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .runway-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            background: var(--white);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .runway-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .runway-image {
+            width: 100%;
+            height: 450px;
+            overflow: hidden;
+        }
+
+        .runway-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            transition: transform 0.6s ease;
+        }
+
+        .runway-card:hover .runway-image img {
+            transform: scale(1.05);
+        }
+
+        .runway-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .runway-card:hover .runway-overlay {
+            opacity: 1;
+        }
+
+        .runway-overlay h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: var(--white);
+            margin-bottom: 5px;
+        }
+
+        .runway-overlay p {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+        }
+
+        .lightbox-close svg {
+            width: 20px;
+            height: 20px;
+            stroke: white;
+        }
+
+        .lightbox-content img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-nav:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+        }
+
+        .lightbox-nav svg {
+            width: 20px;
+            height: 20px;
+            stroke: white;
+        }
+
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+
+        /* Footer */
+        .runways-footer {
+            background: var(--black);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .runways-footer p {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .runways-footer a {
+            color: var(--gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .runway-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .runway-image {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </button>
+            
+            <a href="index.html" class="logo">
+                <img src="Rahil.png" alt="Rahil Raza" class="logo-img" style="max-height: 70px; height: 70px; width: auto;">
+            </a>
+            
+            <nav class="nav-main">
+                <a href="index.html" class="nav-link">HOME</a>
+                <a href="shop.html?category=men" class="nav-link">MEN</a>
+                <a href="shop.html?category=women" class="nav-link">WOMEN</a>
+                <a href="runways.html" class="nav-link active">RUNWAYS</a>
+                <a href="press.html" class="nav-link">PRESS</a>
+                <a href="index.html#about" class="nav-link">ABOUT</a>
+                <a href="login.html" class="nav-link">LOGIN</a>
+            </nav>
+            
+            <div class="header-actions">
+                <a href="cart.html" class="action-btn cart-btn" aria-label="Cart">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <path d="M16 10a4 4 0 01-8 0"/>
+                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-inner">
+            <nav class="mobile-nav">
+                <a href="index.html" class="mobile-nav-link">HOME</a>
+                <a href="shop.html?category=men" class="mobile-nav-link">MEN</a>
+                <a href="shop.html?category=women" class="mobile-nav-link">WOMEN</a>
+                <a href="runways.html" class="mobile-nav-link">RUNWAYS</a>
+                <a href="press.html" class="mobile-nav-link">PRESS</a>
+                <a href="index.html#about" class="mobile-nav-link">ABOUT</a>
+                <a href="login.html" class="mobile-nav-link">LOGIN</a>
+            </nav>
+        </div>
+    </div>
+
+    <main class="runways-page">
+        <!-- HERO -->
+        <section class="runways-hero">
+            <div class="runways-hero-content">
+                <p class="runways-label">Fashion Shows</p>
+                <h1 class="runways-title">Runways</h1>
+                <p class="runways-subtitle">Showcasing elegance on the ramp</p>
+            </div>
+        </section>
+
+        <!-- GALLERY -->
+        <section class="runways-gallery">
+            <div class="gallery-container">
+                <div class="runway-grid">
+                    <div class="runway-card" data-index="0">
+                        <div class="runway-image">
+                            <img src="runways/runway1.jpeg" alt="Runway Show 1">
+                        </div>
+                        <div class="runway-overlay">
+                            <h3>Fashion Show 2025</h3>
+                            <p>Runway Collection</p>
+                        </div>
+                    </div>
+                    
+                    <div class="runway-card" data-index="1">
+                        <div class="runway-image">
+                            <img src="runways/runway2.jpeg" alt="Runway Show 2">
+                        </div>
+                        <div class="runway-overlay">
+                            <h3>Fashion Show 2025</h3>
+                            <p>Runway Collection</p>
+                        </div>
+                    </div>
+                    
+                    <div class="runway-card" data-index="2">
+                        <div class="runway-image">
+                            <img src="runways/runway3.jpeg" alt="Runway Show 3">
+                        </div>
+                        <div class="runway-overlay">
+                            <h3>Fashion Show 2025</h3>
+                            <p>Runway Collection</p>
+                        </div>
+                    </div>
+                    
+                    <div class="runway-card" data-index="3">
+                        <div class="runway-image">
+                            <img src="runways/runway4.jpeg" alt="Runway Show 4">
+                        </div>
+                        <div class="runway-overlay">
+                            <h3>Fashion Show 2025</h3>
+                            <p>Runway Collection</p>
+                        </div>
+                    </div>
+                    
+                    <div class="runway-card" data-index="4">
+                        <div class="runway-image">
+                            <img src="runways/runway5.jpeg" alt="Runway Show 5">
+                        </div>
+                        <div class="runway-overlay">
+                            <h3>Fashion Show 2025</h3>
+                            <p>Runway Collection</p>
+                        </div>
+                    </div>
+                    
+                    <div class="runway-card" data-index="5">
+                        <div class="runway-image">
+                            <img src="runways/runway6.jpeg" alt="Runway Show 6">
+                        </div>
+                        <div class="runway-overlay">
+                            <h3>Fashion Show 2025</h3>
+                            <p>Runway Collection</p>
+                        </div>
+                    </div>
+                    
+                    <div class="runway-card" data-index="6">
+                        <div class="runway-image">
+                            <img src="runways/runway7.jpeg" alt="Runway Show 7">
+                        </div>
+                        <div class="runway-overlay">
+                            <h3>Fashion Show 2025</h3>
+                            <p>Runway Collection</p>
+                        </div>
+                    </div>
+                    
+                    <div class="runway-card" data-index="7">
+                        <div class="runway-image">
+                            <img src="runways/runway8.jpeg" alt="Runway Show 8">
+                        </div>
+                        <div class="runway-overlay">
+                            <h3>Fashion Show 2025</h3>
+                            <p>Runway Collection</p>
+                        </div>
+                    </div>
+                    
+                    <div class="runway-card" data-index="8">
+                        <div class="runway-image">
+                            <img src="runways/runway9.jpeg" alt="Runway Show 9">
+                        </div>
+                        <div class="runway-overlay">
+                            <h3>Fashion Show 2025</h3>
+                            <p>Runway Collection</p>
+                        </div>
+                    </div>
+                    
+                    <div class="runway-card" data-index="9">
+                        <div class="runway-image">
+                            <img src="runways/runway10.jpeg" alt="Runway Show 10">
+                        </div>
+                        <div class="runway-overlay">
+                            <h3>Fashion Show 2025</h3>
+                            <p>Runway Collection</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="runways-footer">
+        <p>&copy; 2026 RAHIL RAZA. All rights reserved. | <a href="index.html">Back to Home</a></p>
+    </footer>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+        </button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+        </button>
+        <div class="lightbox-content">
+            <img src="" alt="Runway Image" id="lightboxImage">
+        </div>
+    </div>
+
+    <script>
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero animations
+        gsap.to('.runways-label', { opacity: 1, duration: 0.8, delay: 0.2 });
+        gsap.to('.runways-title', { opacity: 1, duration: 0.8, delay: 0.4 });
+        gsap.to('.runways-subtitle', { opacity: 1, duration: 0.8, delay: 0.6 });
+
+        // Gallery cards animation
+        gsap.to('.runway-card', {
+            scrollTrigger: {
+                trigger: '.runways-gallery',
+                start: 'top 80%'
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.1
+        });
+
+        // Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const runwayCards = document.querySelectorAll('.runway-card');
+        let currentIndex = 0;
+
+        const images = Array.from(runwayCards).map(card => card.querySelector('img').src);
+
+        runwayCards.forEach((card, index) => {
+            card.addEventListener('click', () => {
+                currentIndex = index;
+                lightboxImage.src = images[currentIndex];
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+        
+        document.getElementById('lightboxPrev').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            lightboxImage.src = images[currentIndex];
+        });
+
+        document.getElementById('lightboxNext').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            lightboxImage.src = images[currentIndex];
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                lightboxImage.src = images[currentIndex];
+            }
+            if (e.key === 'ArrowRight') {
+                currentIndex = (currentIndex + 1) % images.length;
+                lightboxImage.src = images[currentIndex];
+            }
+        });
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Mobile Menu
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Cart Count
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+        }
+        updateCartCount();
+    </script>
+</body>
+</html>

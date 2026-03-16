@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAHIL RAZA | Luxury Fashion House</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="Rahil.png">
+    <link rel="apple-touch-icon" href="Rahil.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="preloader-overlay">
+        <div class="preloader-content">
+            <div class="loader-line line-top"></div>
+            <h1 class="preloader-brand">
+                 <span class="char-wrap"><span class="char">R</span></span>
+                 <span class="char-wrap"><span class="char">a</span></span>
+                 <span class="char-wrap"><span class="char">h</span></span>
+                 <span class="char-wrap"><span class="char">i</span></span>
+                 <span class="char-wrap"><span class="char">l</span></span>
+                 <span class="char-wrap">&nbsp;</span>
+                 <span class="char-wrap"><span class="char">R</span></span>
+                 <span class="char-wrap"><span class="char">a</span></span>
+                 <span class="char-wrap"><span class="char">z</span></span>
+                 <span class="char-wrap"><span class="char">a</span></span>
+            </h1>
+            <div class="loader-line line-bottom"></div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </button>
+            
+            <a href="index.html" class="logo">
+                <img src="Rahil.png" alt="Rahil Raza" class="logo-img" style="max-height: 70px; height: 70px; width: auto;">
+            </a>
+            
+            <nav class="nav-main">
+                <a href="index.html" class="nav-link">HOME</a>
+                <a href="shop.html?category=men" class="nav-link">MEN</a>
+                <a href="shop.html?category=women" class="nav-link">WOMEN</a>
+                <a href="runways.html" class="nav-link">RUNWAYS</a>
+                <a href="press.html" class="nav-link">PRESS</a>
+                <a href="#about" class="nav-link">ABOUT</a>
+                <a href="login.html" class="nav-link">LOGIN</a>
+            </nav>
+            
+            <div class="header-actions">
+                <button class="action-btn search-btn" id="searchBtn" aria-label="Search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.35-4.35"/>
+                    </svg>
+                </button>
+                <a href="cart.html" class="action-btn cart-btn" aria-label="Cart">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <path d="M16 10a4 4 0 01-8 0"/>
+                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-inner">
+            <nav class="mobile-nav">
+                <a href="index.html" class="mobile-nav-link">HOME</a>
+                <a href="shop.html?category=men" class="mobile-nav-link">MEN</a>
+                <a href="shop.html?category=women" class="mobile-nav-link">WOMEN</a>
+                <a href="runways.html" class="mobile-nav-link">RUNWAYS</a>
+                <a href="press.html" class="mobile-nav-link">PRESS</a>
+                <a href="#about" class="mobile-nav-link">ABOUT</a>
+                <a href="login.html" class="mobile-nav-link">LOGIN</a>
+                <div class="mobile-social">
+                    <a href="https://www.instagram.com/ig.vecna03?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="mobile-social-link" aria-label="Instagram">
+                        <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="instaGradMobile" x1="0%" y1="100%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#FFDC80"/>
+                                    <stop offset="25%" style="stop-color:#F77737"/>
+                                    <stop offset="50%" style="stop-color:#E1306C"/>
+                                    <stop offset="75%" style="stop-color:#C13584"/>
+                                    <stop offset="100%" style="stop-color:#405DE6"/>
+                                </linearGradient>
+                            </defs>
+                            <rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="url(#instaGradMobile)" stroke-width="2"/>
+                            <circle cx="12" cy="12" r="4" fill="none" stroke="url(#instaGradMobile)" stroke-width="2"/>
+                            <circle cx="17.5" cy="6.5" r="1.5" fill="url(#instaGradMobile)"/>
+                        </svg>
+                    </a>
+                    <a href="https://pin.it/4ffQtROU1" target="_blank" class="mobile-social-link" aria-label="Pinterest">
+                        <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" fill="#E60023"/>
+                            <path d="M12 6c-2.8 0-5 2.2-5 5 0 2 1.2 3.8 3 4.6 0-.4 0-.9.1-1.3l.7-2.8s-.2-.4-.2-.9c0-.8.5-1.4 1.1-1.4.5 0 .8.4.8.9 0 .5-.3 1.3-.5 2-.1.6.3 1 .9 1 1.1 0 1.9-1.1 1.9-2.8 0-1.5-1-2.5-2.5-2.5-1.7 0-2.8 1.3-2.8 2.6 0 .5.2 1.1.4 1.4.1.1.1.1 0 .3l-.1.6c0 .2-.1.2-.3.1-.8-.4-1.3-1.5-1.3-2.4 0-2 1.4-3.8 4.1-3.8 2.2 0 3.8 1.5 3.8 3.6 0 2.1-1.3 3.9-3.2 3.9-.6 0-1.2-.3-1.4-.7l-.4 1.5c-.1.5-.5 1.1-.7 1.5.5.2 1.1.3 1.7.3 2.8 0 5-2.2 5-5s-2.2-5-5-5z" fill="white"/>
+                        </svg>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- SEARCH OVERLAY -->
+    <div class="search-overlay" id="searchOverlay">
+        <button class="search-close" id="searchClose">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+        </button>
+        <div class="search-content">
+            <h2>SEARCH</h2>
+            <form class="search-form" id="searchForm">
+                <input type="text" placeholder="What are you looking for?" id="searchInput" autocomplete="off">
+                <button type="submit">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </form>
+            <div class="search-suggestions">
+                <p>Popular Searches:</p>
+                <div class="suggestion-tags">
+                    <a href="shop.html?search=silk">Silk</a>
+                    <a href="shop.html?search=drape">Drape</a>
+                    <a href="shop.html?search=jacket">Jacket</a>
+                    <a href="shop.html?search=kurta">Kurta</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- HERO - COLLECTION SHOWCASE -->
+        <section class="hero">
+            <div class="hero-slide active">
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=1920" alt="Collection Showcase">
+                </div>
+                <div class="hero-content">
+                    <h1 class="hero-title">OUR<br>COLLECTION</h1>
+                    <p class="hero-description">Where timeless elegance meets contemporary artistry. Discover silhouettes that transcend seasons.</p>
+                    <a href="shop.html" class="hero-btn">EXPLORE NOW</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRENDING CATEGORIES -->
+        <section class="categories-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">EXPLORE THE COLLECTION</h2>
+                </div>
+                <div class="categories-grid">
+                    <a href="shop.html?category=women" class="category-card">
+                        <div class="category-image">
+                            <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=800" alt="Women's Collection">
+                        </div>
+                        <div class="category-content">
+                            <span class="category-label">Collection</span>
+                            <h3 class="category-name">WOMEN</h3>
+                            <span class="category-cta">Shop Now →</span>
+                        </div>
+                    </a>
+                    <a href="shop.html?category=men" class="category-card">
+                        <div class="category-image">
+                            <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=800" alt="Men's Collection">
+                        </div>
+                        <div class="category-content">
+                            <span class="category-label">Collection</span>
+                            <h3 class="category-name">MEN</h3>
+                            <span class="category-cta">Shop Now →</span>
+                        </div>
+                    </a>
+
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED PRODUCTS -->
+        <section class="featured-section">
+            <div class="container">
+                <div class="section-header centered">
+                    <span class="section-label">CURATED FOR YOU</span>
+                    <h2 class="section-title">NEW ARRIVALS</h2>
+                    <p class="section-subtitle">Discover our latest arrivals, a harmonious fusion of our iconic styles and elegantly curated silhouettes</p>
+                </div>
+                
+                <div class="featured-tabs">
+                    <button class="tab-btn active" data-category="all">ALL</button>
+                    <button class="tab-btn" data-category="women">WOMEN</button>
+                    <button class="tab-btn" data-category="men">MEN</button>
+                </div>
+                
+                <div class="products-grid" id="featuredGrid">
+                    <!-- Products loaded via JS -->
+                </div>
+                
+                <div class="section-cta">
+                    <a href="shop.html" class="btn-primary">VIEW ALL PRODUCTS</a>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- ABOUT ME / ABOUT -->
+        <section class="about-section" id="about">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-image">
+                            <img src="RahilRaza.jpeg" alt="Rahil Raza">
+                    </div>
+                    <div class="about-content">
+                        <span class="section-label">ABOUT ME</span>
+                        <h2 class="about-title">CRAFTED WITH<br>INTENTION</h2>
+                        <div class="about-text">
+                            <p>Rahil Raza is a celebrated Fashion Designer/Stylist, and Actor known for his outstanding work and commitment to his craft. As the founder of his eponymous label, Rahil Raza, he has made a name for himself in the fashion industry with his exceptional designs and styling skills.</p>
+                            <p>Rahil Raza, a multi-talented Fashion Designer, Stylist, his own label, Rahil Raza, he showcases his creativity and expertise through stunning designs on the Runways and continues to inspire and impress with his work.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- INSTAGRAM / SOCIAL -->
+        <section class="instagram-section">
+            <div class="container">
+                <div class="section-header centered">
+                    <span class="section-label">@RAHILRAZA.OFFICIAL</span>
+                    <h2 class="section-title">FOLLOW US ON INSTAGRAM</h2>
+                </div>
+                <div class="instagram-grid">
+                    <a href="https://www.instagram.com/ig.vecna03?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="instagram-item">
+                        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400" alt="Instagram">
+                        <div class="instagram-overlay">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="2" width="20" height="20" rx="5"/>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                        </div>
+                    </a>
+                    <a href="https://www.instagram.com/ig.vecna03?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="instagram-item">
+                        <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=400" alt="Instagram">
+                        <div class="instagram-overlay">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="2" width="20" height="20" rx="5"/>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                        </div>
+                    </a>
+                    <a href="https://www.instagram.com/ig.vecna03?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="instagram-item">
+                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400" alt="Instagram">
+                        <div class="instagram-overlay">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="2" width="20" height="20" rx="5"/>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                        </div>
+                    </a>
+                    <a href="https://www.instagram.com/ig.vecna03?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="instagram-item">
+                        <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=400" alt="Instagram">
+                        <div class="instagram-overlay">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="2" width="20" height="20" rx="5"/>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                        </div>
+                    </a>
+                    <a href="https://www.instagram.com/ig.vecna03?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="instagram-item">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400" alt="Instagram">
+                        <div class="instagram-overlay">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="2" width="20" height="20" rx="5"/>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                        </div>
+                    </a>
+                    <a href="https://www.instagram.com/ig.vecna03?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="instagram-item">
+                        <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=400" alt="Instagram">
+                        <div class="instagram-overlay">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="2" width="20" height="20" rx="5"/>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEWSLETTER -->
+        <section class="newsletter-section">
+            <div class="container">
+                <div class="newsletter-content">
+                    <h2 class="newsletter-title">SUBSCRIBE TO OUR NEWSLETTER</h2>
+                    <p class="newsletter-subtitle">Get 10% off your first order and be the first to know about new collections, exclusive offers, and style inspiration.</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Enter your email address" required>
+                        <button type="submit">SUBSCRIBE</button>
+                    </form>
+                    <p class="newsletter-note">By subscribing, you agree to our Privacy Policy and consent to receive updates.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer" id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <a href="index.html" class="footer-logo">
+                            <img src="Rahil.png" alt="Rahil Raza" class="footer-logo-img" style="max-height: 80px; height: 80px; width: auto;">
+                        </a>
+                        <p class="footer-tagline">Redefining Luxury Since 2020</p>
+                        <div class="footer-social">
+                            <a href="https://www.instagram.com/ig.vecna03?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" aria-label="Instagram">
+                                <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="instaGradFooter" x1="0%" y1="100%" x2="100%" y2="0%">
+                                            <stop offset="0%" style="stop-color:#FFDC80"/>
+                                            <stop offset="25%" style="stop-color:#F77737"/>
+                                            <stop offset="50%" style="stop-color:#E1306C"/>
+                                            <stop offset="75%" style="stop-color:#C13584"/>
+                                            <stop offset="100%" style="stop-color:#405DE6"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="url(#instaGradFooter)" stroke-width="2"/>
+                                    <circle cx="12" cy="12" r="4" fill="none" stroke="url(#instaGradFooter)" stroke-width="2"/>
+                                    <circle cx="17.5" cy="6.5" r="1.5" fill="url(#instaGradFooter)"/>
+                                </svg>
+                            </a>
+                            <a href="https://pin.it/4ffQtROU1" target="_blank" aria-label="Pinterest">
+                                <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="10" fill="#E60023"/>
+                                    <path d="M12 6c-2.8 0-5 2.2-5 5 0 2 1.2 3.8 3 4.6 0-.4 0-.9.1-1.3l.7-2.8s-.2-.4-.2-.9c0-.8.5-1.4 1.1-1.4.5 0 .8.4.8.9 0 .5-.3 1.3-.5 2-.1.6.3 1 .9 1 1.1 0 1.9-1.1 1.9-2.8 0-1.5-1-2.5-2.5-2.5-1.7 0-2.8 1.3-2.8 2.6 0 .5.2 1.1.4 1.4.1.1.1.1 0 .3l-.1.6c0 .2-.1.2-.3.1-.8-.4-1.3-1.5-1.3-2.4 0-2 1.4-3.8 4.1-3.8 2.2 0 3.8 1.5 3.8 3.6 0 2.1-1.3 3.9-3.2 3.9-.6 0-1.2-.3-1.4-.7l-.4 1.5c-.1.5-.5 1.1-.7 1.5.5.2 1.1.3 1.7.3 2.8 0 5-2.2 5-5s-2.2-5-5-5z" fill="white"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4>SHOP</h4>
+                        <ul>
+                            <li><a href="shop.html?category=women">Women</a></li>
+                            <li><a href="shop.html?category=men">Men</a></li>
+                            <li><a href="shop.html">All Products</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4>ABOUT ME</h4>
+                        <ul>
+                            <li><a href="#about">Our Story</a></li>
+                            <li><a href="press.html">Press</a></li>
+                            <li><a href="runways.html">Shows</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4>CUSTOMER CARE</h4>
+                        <ul>
+                            <li><a href="https://wa.me/917206889528" target="_blank">Contact Us</a></li>
+                            <li><a href="https://wa.me/917206889528" target="_blank">Shipping & Delivery</a></li>
+                            <li><a href="https://wa.me/917206889528" target="_blank">Returns & Exchange</a></li>
+                            <li><span style="color: var(--dark-gray); cursor: default; font-size: 0.9rem; font-weight: 400;">Size Guide</span></li>
+                            <li><span style="color: var(--dark-gray); cursor: default; font-size: 0.9rem; font-weight: 400;">FAQs</span></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-contact">
+                        <h4>CONTACT</h4>
+                        <p>123, Fashion District<br>New Delhi, India 110001</p>
+                        <p><a href="tel:+919821600409">+91 98216 00409</a></p>
+                        <p><a href="mailto:hello@rahilraza.com">hello@rahilraza.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-inner">
+                    <p>&copy; <span id="secretYear" style="cursor: default;">2026</span> RAHIL RAZA. All rights reserved.</p>
+                    <div class="footer-legal">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-message"></span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Hidden Admin Access -->
+    <script>
+    (function() {
+        let clickCount = 0;
+        let clickTimer = null;
+        const secretYear = document.getElementById('secretYear');
+        if (secretYear) {
+            secretYear.addEventListener('click', function() {
+                clickCount++;
+                if (clickCount === 1) {
+                    clickTimer = setTimeout(function() {
+                        clickCount = 0;
+                    }, 3000);
+                }
+                if (clickCount >= 5) {
+                    clearTimeout(clickTimer);
+                    clickCount = 0;
+                    window.location.href = 'admin.html';
+                }
+            });
+        }
+    })();
+    </script>
+</body>
+</html>
